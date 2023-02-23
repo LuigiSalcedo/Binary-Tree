@@ -23,7 +23,7 @@ public class BinaryTree<K, V>
         size = 1;
     }
     
-    // MÉTODOS ESTÁTICOS
+    // MÉTODOS PUBLICOS
     public BinaryTreeElement<K, V> getMaxValueElementFrom(BinaryTreeElement<K, V> element)
     {
         BinaryTreeElement<K, V> maxValueElement = element;
@@ -48,7 +48,6 @@ public class BinaryTree<K, V>
         return minValueElement;
     }
     
-    // MÉTODOS PUBLICOS
     public int size()
     {
         return size;

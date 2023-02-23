@@ -10,14 +10,14 @@ import java.util.Objects;
  */
 public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, V>>
 {
-    // Atributos
+    // ATRIBUTOS
     private K key;
     private V value;
     private BinaryTreeElement left;
     private BinaryTreeElement rigth;
     private int level;
     
-    // Constructores
+    // CONSTRUCTORES
     public BinaryTreeElement(K key, V value)
     {
         this.key = key;
@@ -34,7 +34,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
         this.rigth = rigth;
     }
     
-    // Setters
+    // SETTERS
     public void setValue(V value)
     {
         this.value = value;
@@ -55,7 +55,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
         this.level = level;
     }
     
-    // Getters
+    // GETTERS
     public V getValue() 
     {
         return value;
@@ -86,7 +86,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
         return level;
     }
     
-    // Métodos
+    // MÉTODOS PACKAGE
     boolean add(BinaryTreeElement<K, V> element)
     {
         if(element.compareTo(this) < 0)
@@ -103,7 +103,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
         return true;
     }
     
-    public BinaryTreeElement<K, V> getBetterOption(BinaryTreeElement<K, V> element)
+    BinaryTreeElement<K, V> getBetterOption(BinaryTreeElement<K, V> element)
     {
         return element.compareTo(this) < 0 ? left : rigth; 
     }
@@ -114,6 +114,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
         if(rigth == element) rigth = null;
     }
     
+    // SOBREMONTURA DE MÉTODOS
     @Override
     public int hashCode()
     {
@@ -133,7 +134,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
             return false;
         }
         final BinaryTreeElement<K, V> other = (BinaryTreeElement<K, V>) obj;
-        return Objects.equals(this.value, other.value);
+        return Objects.equals(this.key, other.key);
     }
     
     @Override
@@ -145,6 +146,23 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
     @Override
     public String toString()
     {
-        return "K: " + key.toString() + " - V: " + value.toString();
+        StringBuilder sb = new StringBuilder();
+        
+        // Agregamos información del nodo izquierdo.
+        if(left != null)
+        {
+            sb.append("(").append(left.key).append(", ").append(left.value).append(") -> ");
+        }
+        
+        // Agregamos la información del nodo actual.
+        sb.append("(").append(this.key).append(", ").append(this.value).append(")");
+        
+        // Agregamos la información del nodo derecho.
+        if(rigth != null)
+        {
+            sb.append(" <- (").append(rigth.key).append(", ").append(rigth.value).append(")");
+        }
+        
+        return sb.toString();
     }
 }
