@@ -151,7 +151,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
         // Agregamos información del nodo izquierdo.
         if(left != null)
         {
-            sb.append("(").append(left.key).append(", ").append(left.value).append(") -> ");
+            sb.append("(").append(left.key).append(", ").append(left.value).append(") <- ");
         }
         
         // Agregamos la información del nodo actual.
@@ -160,7 +160,7 @@ public class BinaryTreeElement<K, V> implements Comparable<BinaryTreeElement<K, 
         // Agregamos la información del nodo derecho.
         if(rigth != null)
         {
-            sb.append(" <- (").append(rigth.key).append(", ").append(rigth.value).append(")");
+            sb.append(" -> (").append(rigth.key).append(", ").append(rigth.value).append(")");
         }
         
         return sb.toString();
