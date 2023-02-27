@@ -58,7 +58,7 @@ public class BinaryTree<K, V>
         return root;
     }
     
-    public void add(K key, V value)
+    public boolean add(K key, V value)
     {
         BinaryTreeElement<K, V> newElement = new BinaryTreeElement(key, value);
         
@@ -66,10 +66,12 @@ public class BinaryTree<K, V>
         
         while(!piv.add(newElement))
         {
+            if(piv.getKey().equals(key)) return false;
             piv = piv.getBetterOption(newElement);
         }
         
         size++;
+        return true;
     }
     
     public V get(K key)
@@ -100,6 +102,11 @@ public class BinaryTree<K, V>
         
         BinaryTreeElement<K, V> replacementElement 
                 = piv.getLeft() != null ? getMaxValueElementFrom(piv.getLeft()) : getMinValueElementFrom(piv.getRigth());
+        
+        searchFatherElement(replacementElement.getKey()).instantCut(replacementElement);
+        
+        replacementElement.setLeft(piv.getLeft());
+        replacementElement.setRigth(piv.getRigth());
         
         if(side == 0)
         {
@@ -140,7 +147,7 @@ public class BinaryTree<K, V>
         
         while(piv != null)
         {
-            if(piv.getLeft().getKey().equals(key) || piv.getRigth().getKey().equals(key))
+            if(areEquals(piv.getLeft(), element) || areEquals(piv.getRigth(), element))
             {
                 return piv;
             }
@@ -148,6 +155,15 @@ public class BinaryTree<K, V>
             piv = piv.getBetterOption(element);
         }
         return null;
+    }
+    
+    private boolean areEquals(BinaryTreeElement<K, V> firstElement, BinaryTreeElement<K, V> secondElement)
+    {
+        if(firstElement == secondElement) return true;
+        
+        if(firstElement == null || secondElement == null) return false;
+        
+        return firstElement.getKey().equals(secondElement.getKey());
     }
     
     // SOBREMONTURA DE MÉTODOS

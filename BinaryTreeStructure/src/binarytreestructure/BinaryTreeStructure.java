@@ -10,12 +10,14 @@ public class BinaryTreeStructure
 {
     public static void main(String[] args) 
     {
-        BinaryTree<Integer, String> testTree = new BinaryTree(1, "Luigi");
+        BinaryTree<Integer, String> testTree = new BinaryTree(0, "Luigi");
         testTree.add(2, "Salcedo");
         testTree.add(-1, "César");
-        testTree.add(3, "Espriella");
+        testTree.add(4, "Espriella");
+        testTree.add(3, "Test");
+        testTree.add(1, "Test2");
         
-        // testTree.remove(2);
+        testTree.remove(2);
         
         String gE = testTree.get(2); 
         
